@@ -1,9 +1,30 @@
-export function hello(): string {
-    return 'Hello World!';
-}
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import * as book from './models/book';
 
-export function helloWho(nome: string): string {
-    return `Hello ${nome}!`;
-}
+dotenv.config({ debug: true });
 
-console.log(hello());
+const connection_string = process.env.DB_CONNECTION_STRING || '';
+
+(async () => {
+    const db = await mongoose.connect(connection_string, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+    });
+    const newBook = {
+        ISBN: '9788566428452',
+        title: 'Onde está a ovelha verde?',
+        authors: ['Mem Fox'],
+        category: 'Infantil',
+        language: 'pt-br',
+        publishedAt: new Date('2017'),
+        publisher: 'Saber e Ler Editora',
+    };
+    const bookID = await book.addBook(newBook);
+    console.log(bookID);
+    const bookInfo = await book.getBooksByISBN({ ISBN: '9788566428452' });
+    console.log(bookInfo);
+    await db.connection.dropDatabase();
+    await db.disconnect();
+})();
