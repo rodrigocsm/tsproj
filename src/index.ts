@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import * as book from './models/book';
+import { addBook, getBooksByISBN } from './db/schemas/mongodb/book';
 
 dotenv.config({ debug: true });
 
@@ -21,9 +21,9 @@ const connection_string = process.env.DB_CONNECTION_STRING || '';
         publishedAt: new Date('2017'),
         publisher: 'Saber e Ler Editora',
     };
-    const bookID = await book.addBook(newBook);
+    const bookID = await addBook(newBook);
     console.log(bookID);
-    const bookInfo = await book.getBooksByISBN({ ISBN: '9788566428452' });
+    const bookInfo = await getBooksByISBN({ ISBN: '9788566428452' });
     console.log(bookInfo);
     await db.connection.dropDatabase();
     await db.disconnect();
