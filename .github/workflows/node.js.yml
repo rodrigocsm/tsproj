@@ -29,5 +29,5 @@ jobs:
               env: 
                 PORT: 5000
                 HOST: localhost
-                CONN_STRING: ${{secrets.DB_CONNECTION_STRING}} 
+                DB_CONNECTION_STRING: ${{secrets.DB_CONNECTION_STRING}} 
             - run: npm run prod --if-present
