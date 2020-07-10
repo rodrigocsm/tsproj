@@ -8,7 +8,7 @@
         "test:watch": "npx mocha -r ts-node/register --watch --watch-files ./src,./tests tests/*.test.ts",
         "dev": "npx nodemon --watch src/ --exec ts-node src/index.ts -e ts",
         "build": "npx tsc",
-        "prod": "npm run build && node dist/src/index.js"
+        "prod": "npm run build && node ./dist/src/index.js"
     },
     "repository": {
         "type": "git",
