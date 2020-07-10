@@ -4,10 +4,10 @@
     "description": "Projeto para aprender a typescript em conjunto com o nodejs",
     "main": "index.js",
     "scripts": {
-        "test": "mocha -r ts-node/register tests/*.test.ts",
-        "test:watch": "mocha -r ts-node/register --watch --watch-files ./src,./tests tests/*.test.ts",
-        "dev": "nodemon --watch src/ --exec ts-node src/index.ts -e ts",
-        "build": "tsc",
+        "test": "npx mocha -r ts-node/register tests/*.test.ts",
+        "test:watch": "npx mocha -r ts-node/register --watch --watch-files ./src,./tests tests/*.test.ts",
+        "dev": "npx nodemon --watch src/ --exec ts-node src/index.ts -e ts",
+        "build": "npx tsc",
         "prod": "npm run build && node dist/src/index.js"
     },
     "repository": {
