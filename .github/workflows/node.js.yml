@@ -31,3 +31,8 @@ jobs:
                 HOST: localhost
                 DB_CONNECTION_STRING: ${{secrets.DB_CONNECTION_STRING}} 
             - run: npm run prod --if-present
+            - name: artifacts
+              uses: actions/upload-artifact@v1
+              with:
+                name: dist
+                path: dist
