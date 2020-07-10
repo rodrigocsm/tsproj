@@ -5,6 +5,12 @@ import IBook from '../src/models/book';
 import { addBook, getBooksByISBN, getBooksByTitle } from '../src/db/schemas/mongodb/book';
 import { getAuthorBooks } from '../src/db/schemas/mongodb/author';
 import { getPublisherBooks } from '../src/db/schemas/mongodb/publisher';
+import dotenv from 'dotenv';
+import path from 'path';
+
+const dotEnvPath = path.resolve('./.env');
+
+dotenv.config({ path: dotEnvPath });
 
 const bookList: Array<IBook> = [
     {
@@ -53,8 +59,7 @@ const bookList: Array<IBook> = [
         publisher: 'Rocco',
     },
 ];
-const connection_string =
-    'mongodb+srv://rodrigocsm:rcsm80@cluster0-tggra.azure.mongodb.net/test?retryWrites=true&w=majority';
+const connection_string = process.env.CONN_STRING;
 let db: typeof mongoose;
 describe('Teste das funções de acesso ao banco', function () {
     this.timeout(0);
