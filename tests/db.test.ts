@@ -59,7 +59,7 @@ const bookList: Array<IBook> = [
         publisher: 'Rocco',
     },
 ];
-const connection_string = process.env.CONN_STRING;
+const connection_string = process.env.DB_CONNECTION_STRING || '';
 let db: typeof mongoose;
 describe('Teste das funções de acesso ao banco', function () {
     this.timeout(0);
